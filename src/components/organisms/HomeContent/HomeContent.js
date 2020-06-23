@@ -1,5 +1,6 @@
 import React from "react";
 import SearchBar from "../../molecules/SearchBar/SearchBar";
+import Card from '../../molecules/Card/Card'
 import "./HomeContent.css";
 
 const HomeContent = ({
@@ -9,6 +10,7 @@ const HomeContent = ({
   placeholder,
   value,
   onChange,
+  data
 }) => {
   return (
     <main>
@@ -28,7 +30,34 @@ const HomeContent = ({
         </div>
       </section>
       <section>
-        <h2>Cards</h2>
+      {data ? (
+       data.map(item => {
+         let { logo,
+          company,
+          position,
+          postedAt,
+          contract,
+          location,
+          languages,
+          tools} = item;
+
+         return(
+          <Card
+          logo={logo}
+          company={company}
+          position={position}
+          postedAt={postedAt}
+          contract={contract}
+          location={location}
+          languages={languages}
+          tools={tools}
+          />
+         )
+       }))
+       : (
+       <h2>Nem uma vaga encontrada</h2>
+
+       )}
       </section>
     </main>
   );
